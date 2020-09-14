@@ -17,8 +17,8 @@ Redmine::Plugin.register :redmine_impersonate do
   project_module :impersonate do
     permission :impersonate_project_user, impersonates: [:select_user, :start_impersonation, :stop_impersonation]
 
-    menu :project_menu, :impersonates, 
-      { controller: :impersonates, action: :select_user }, 
+    menu :project_menu, :impersonates,
+      { controller: :impersonates, action: :select_user },
       after: :activity, param: :project_id
   end
 end

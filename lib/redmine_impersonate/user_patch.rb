@@ -7,13 +7,13 @@ module RedmineImpersonate
         class << self
           alias_method :current_without_impersonation, :current
           def current
-            Thread.current[:impersonated_user] || current_without_impersonation
+            RequestStore.store[:impersonated_user] || current_without_impersonation
           end
           def impersonated_user=(user)
-            Thread.current[:impersonated_user]=user
+            RequestStore.store[:impersonated_user]=user
           end
           def impersonated_user
-            Thread.current[:impersonated_user]
+            RequestStore.store[:impersonated_user]
           end
         end
 
@@ -25,7 +25,7 @@ module RedmineImpersonate
             allowed_to_without_impersonation?(action, context, options, &block)
           end
         end
-      end        
-    end    
+      end
+    end
   end
 end
